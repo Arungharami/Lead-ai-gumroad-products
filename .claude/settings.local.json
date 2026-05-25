@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python scripts/product_audit.py)",
+      "Bash(python3 scripts/product_audit.py)",
+      "Bash(pip3 install *)",
+      "Bash(python3 scripts/build_product_zip.py)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git rm *)"
+    ]
+  }
+}

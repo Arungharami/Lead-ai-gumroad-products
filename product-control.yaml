@@ -1,0 +1,204 @@
+# product-control.yaml
+# Lead.AI Gumroad Product Registry
+# Maintained by: Arun Kumar Gharami
+# Last updated: 2026-05-25
+# Rule: This file is the single source of truth for all product facts.
+#       All other files must match the data here.
+
+brand:
+  name: Lead.AI
+  founder: Arun Kumar Gharami
+  email: a.gharami.325@westcliff.edu
+  github: https://github.com/Arungharami/Lead-ai-gumroad-products
+  positioning: >
+    AI Engineer & Applied Researcher focused on Explainable AI, Fraud Detection,
+    Predictive Analytics, Firebase SaaS products, AI automation, and practical
+    business systems.
+
+target_customers:
+  - AI students
+  - Beginner AI developers
+  - Freelancers
+  - Small business owners
+  - Startup founders
+  - People who want to sell AI products
+  - People who want AI automation but need simple templates
+  - People building portfolio projects
+  - People learning explainable AI and fraud detection
+
+products:
+
+  - id: trustworthy-ai-business-playbook
+    display_name: "Trustworthy AI Business Playbook: XAI, Fraud Detection & Automation Systems"
+    short_name: "AI Business Playbook"
+    gumroad_url: https://arunkg7.gumroad.com/l/fhqklp
+    price_usd: 10
+    status: published
+    version: "1.0.0"
+    folder: products/trustworthy-ai-business-playbook
+    role: entry_point
+    description: >
+      A practical, jargon-free guide that teaches buyers how to build trustworthy AI systems
+      using explainability (XAI), fraud detection, and business automation concepts.
+      Designed for students, freelancers, and founders who want to understand and apply AI
+      in real business contexts.
+    primary_audience:
+      - AI students
+      - Beginner developers
+      - Freelancers who want to understand AI for client work
+    upsell_to:
+      - fraud-detection-xai-project-kit
+      - ai-automation-prompt-vault
+    pricing_strategy:
+      model: fixed_price
+      current: 10
+      rationale: >
+        Low price point reduces buyer friction and attracts the broadest audience segment.
+        Primary role is to capture entry-level buyers and build trust for higher-priced products.
+      future_options:
+        - bundle_discount: "Include in the $79 bundle"
+        - upgrade: "Raise to $15 when v2.0 adds workbook exercises"
+
+  - id: fraud-detection-xai-project-kit
+    display_name: "Fraud Detection XAI Project Kit: Python, SHAP, Dataset & Deployment Guide"
+    short_name: "Fraud Detection XAI Kit"
+    gumroad_url: https://arunkg7.gumroad.com/l/ihsob
+    price_usd: 99
+    status: published
+    version: "1.0.0"
+    folder: products/fraud-detection-xai-project-kit
+    role: flagship_technical
+    description: >
+      A complete, hands-on project kit for building a fraud detection system with explainable AI.
+      Includes Python code, SHAP visualizations, a sample dataset, and a step-by-step deployment guide.
+      Buyers can use this as a portfolio project, a client deliverable, or a learning resource.
+    primary_audience:
+      - AI developers
+      - Data science students building portfolios
+      - Freelancers pitching AI projects to clients
+      - ML engineers learning XAI
+    upsell_to:
+      - firebase-saas-starter-kit
+      - lead-ai-bundle
+    pricing_strategy:
+      model: fixed_price
+      current: 99
+      rationale: >
+        Premium price is justified by the complete project kit format: code, data, deployment steps,
+        and XAI explanations. This is a professional deliverable, not just a PDF. Target buyers
+        who need a working system they can show to clients or employers.
+      future_options:
+        - add_tier: "Add $149 tier with 1 live Zoom review session"
+        - upgrade: "Add Docker deployment in v1.1 to justify higher price"
+
+  - id: firebase-saas-starter-kit
+    display_name: "Firebase SaaS Starter Kit for AI Products: Auth, Dashboard, Payments & Deployment"
+    short_name: "Firebase SaaS Kit"
+    gumroad_url: https://arunkg7.gumroad.com/l/efqpmz
+    price_usd: 49
+    status: published
+    version: "1.0.0"
+    folder: products/firebase-saas-starter-kit
+    role: builder_tool
+    description: >
+      A complete Firebase SaaS starter kit designed for AI product builders. Includes authentication,
+      dashboard layout, Stripe payment integration template, and a deployment checklist. Buyers can
+      use this to launch their own AI SaaS product without starting from scratch.
+    primary_audience:
+      - Startup founders building AI SaaS products
+      - Developers who want to ship faster
+      - Freelancers building client SaaS applications
+    upsell_to:
+      - lead-ai-bundle
+    pricing_strategy:
+      model: fixed_price
+      current: 49
+      rationale: >
+        Mid-tier price for a reusable technical asset. Buyers save 20+ hours of setup work.
+        Clear ROI makes this easy to justify for startup founders and freelancers.
+      future_options:
+        - add_tier: "Add $79 tier with 30-min setup call"
+        - upgrade: "Add Next.js version in v1.1"
+
+  - id: ai-automation-prompt-vault
+    display_name: "50 AI Automation Prompts for Small Businesses, Chatbots, Leads & SaaS Builders"
+    short_name: "AI Prompt Vault"
+    gumroad_url: https://arunkg7.gumroad.com/l/tqnpq
+    price_usd: 19
+    price_model: "pay_what_you_want"
+    price_minimum: 19
+    status: published
+    version: "1.0.0"
+    folder: products/ai-automation-prompt-vault
+    role: quick_win
+    description: >
+      50 production-ready AI automation prompts organized by use case: customer service, lead generation,
+      chatbot scripts, SaaS onboarding, content creation, and sales automation. Each prompt includes
+      a description, use case, and customization instructions.
+    primary_audience:
+      - Small business owners who want to use AI today
+      - Freelancers who want to offer AI automation services
+      - SaaS builders who need chatbot scripts
+      - Non-technical founders who want AI workflows
+    upsell_to:
+      - firebase-saas-starter-kit
+      - lead-ai-bundle
+    pricing_strategy:
+      model: pay_what_you_want
+      minimum: 19
+      suggested: 29
+      rationale: >
+        Pay-what-you-want captures a wide price range. Minimum $19 covers value. Buyers
+        who see high value will pay more. Good for building audience goodwill.
+      future_options:
+        - upgrade: "Expand to 100 prompts for v2.0 at $39"
+        - add_tier: "Add prompt customization service for $49"
+
+bundles:
+
+  - id: lead-ai-bundle
+    display_name: "Lead.AI Business Automation & XAI Builder Bundle"
+    short_name: "Lead.AI Bundle"
+    gumroad_url: "(create on Gumroad — see bundle/lead-ai-business-automation-xai-builder-bundle/)"
+    price_usd: 79
+    regular_price_usd: 149
+    status: planned
+    version: "1.0.0"
+    folder: bundle/lead-ai-business-automation-xai-builder-bundle
+    includes:
+      - trustworthy-ai-business-playbook
+      - fraud-detection-xai-project-kit
+      - firebase-saas-starter-kit
+      - ai-automation-prompt-vault
+    bonuses:
+      - GitHub README templates
+      - Gumroad launch checklist
+      - AI chatbot business proposal template
+    pricing_strategy:
+      model: discounted_bundle
+      launch_price: 79
+      regular_price: 149
+      rationale: >
+        Bundle price of $79 represents 47% savings vs. buying all 4 products individually ($177).
+        Launch price creates urgency. Regular price of $149 positions the bundle as premium.
+
+freebies:
+
+  - id: free-ai-product-launch-checklist
+    display_name: "Free Lead.AI AI Product Launch Checklist"
+    short_name: "Free Launch Checklist"
+    gumroad_url: "(create on Gumroad — see freebies/free-ai-product-launch-checklist/)"
+    price_usd: 0
+    status: planned
+    version: "1.0.0"
+    folder: freebies/free-ai-product-launch-checklist
+    purpose: email_capture_and_trust_building
+    upsell_to:
+      - trustworthy-ai-business-playbook
+      - lead-ai-bundle
+    pricing_strategy:
+      model: free_lead_magnet
+      rationale: >
+        Free checklist attracts the widest possible audience. Email capture enables follow-up
+        marketing. Buyers who use the checklist and see value become natural leads for the $10
+        playbook and the $79 bundle.

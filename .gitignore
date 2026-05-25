@@ -1,0 +1,6 @@
+dist/
+*.zip
+.claude-helper.log
+__pycache__/
+*.pyc
+.env
