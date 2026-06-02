@@ -101,10 +101,11 @@ def build_zip_for_folder(folder_path, product_id, version, product_type="product
             zf.write(file_path, arcname)
             files_added.append(str(arcname))
 
-        # Add a README for the buyer at the root of the ZIP
-        readme_content = generate_zip_readme(product_id, version)
-        zf.writestr("START-HERE.md", readme_content)
-        files_added.append("START-HERE.md")
+        # Add a README for the buyer at the root of the ZIP if not already present
+        if "START-HERE.md" not in files_added:
+            readme_content = generate_zip_readme(product_id, version)
+            zf.writestr("START-HERE.md", readme_content)
+            files_added.append("START-HERE.md")
 
     return zip_path, files_added, files_skipped
 
