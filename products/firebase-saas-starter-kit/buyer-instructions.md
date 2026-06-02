@@ -1,141 +1,70 @@
-# Buyer Instructions — Firebase SaaS Starter Kit
+# Buyer Instructions — Lead.AI Indie AI SaaS Starter Kit
+
+Thank you for purchasing the **Lead.AI Indie AI SaaS Starter Kit**. This document outlines your immediate technical steps to unpack the files, configure your local environment, test all auth/billing integrations, and deploy your new SaaS application live.
 
 ---
 
-## Prerequisites
+## 🛠️ Step 1: Unpack and Verify Workspace
 
-Before starting, make sure you have:
-
-- **Node.js 18+** — Check: `node --version` / Install: https://nodejs.org
-- **npm** — Comes with Node.js. Check: `npm --version`
-- **Firebase CLI** — Install: `npm install -g firebase-tools`
-- **A Firebase project** — Create free at https://console.firebase.google.com (takes 2 minutes)
-- **A Stripe account** — Create free at https://dashboard.stripe.com/register
-- Basic JavaScript and HTML knowledge
+1. **Extract ZIP**: Unzip the downloaded product bundle into your local development workspace directory.
+2. **Review Folder Structure**: Ensure the following core folders exist:
+   - `templates/` (landing page, pricing table, dashboards, and AI wrapper code templates).
+   - `guides/` (individual setup manuals for Auth, Firebase, Stripe, Gumroad, and API security).
+3. **Verify Files**: Ensure [START-HERE.md](file:///Users/arun/Desktop/Lead-ai-gumroad-products/products/firebase-saas-starter-kit/START-HERE.md) and [README.md](file:///Users/arun/Desktop/Lead-ai-gumroad-products/products/firebase-saas-starter-kit/README.md) exist in your root.
 
 ---
 
-## Step 1: Download and install
+## 📦 Step 2: Install Node Packages
 
-Download the ZIP from your Gumroad receipt. Unzip it.
-
+Open your terminal, navigate to the extracted codebase folder, and run:
 ```bash
-cd firebase-saas-starter-kit
 npm install
 ```
+This loads the required dev dependencies and server tools. Ensure no error signals or severe dependency flags are output.
 
 ---
 
-## Step 2: Create your Firebase project (if you haven't)
+## 🔑 Step 3: Setup Local Environment Config
 
-1. Go to https://console.firebase.google.com
-2. Click "Add project"
-3. Name it (e.g., "my-saas-app")
-4. Disable Google Analytics (not needed for this kit)
-5. Click "Create project"
-
-In your new project:
-- Enable **Authentication** → Email/Password + Google
-- Enable **Firestore Database** → Start in test mode (we'll add security rules later)
-- Enable **Hosting** (optional for now)
+1. Create your local browser variables file by copying the template:
+   ```bash
+   cp .env.example .env
+   ```
+2. Open `.env` inside your editor and populate the Firebase and Stripe parameters:
+   - **Firebase Credentials**: Navigate to [Firebase Console](https://console.firebase.google.com) -> Project Settings -> general Web App. Copy the `firebaseConfig` object values.
+   - **Stripe Public Keys**: Locate test parameters under Stripe Developer Dashboard -> API Keys.
+   - **Stripe Price ID**: Initialize a recurring subscription product inside your Stripe catalog, configure a price, and copy the `price_...` ID.
 
 ---
 
-## Step 3: Connect Firebase to the kit
+## 🚀 Step 4: Run the Development Server
 
-```bash
-firebase login
-firebase use --add
-# Select your project from the list
-# Give it an alias like "default"
-```
-
----
-
-## Step 4: Configure environment variables
-
-Copy the example environment file:
-
-```bash
-cp .env.example .env
-```
-
-Open `.env` and fill in:
-
-```
-FIREBASE_API_KEY=your-api-key
-FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
-FIREBASE_PROJECT_ID=your-project-id
-FIREBASE_STORAGE_BUCKET=your-project.appspot.com
-FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-FIREBASE_APP_ID=your-app-id
-
-STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
-```
-
-Find your Firebase config in: Firebase Console → Project Settings → Your apps → SDK setup.  
-Find your Stripe keys in: Stripe Dashboard → Developers → API keys.
-
----
-
-## Step 5: Run locally
-
+Start your local application instance:
 ```bash
 npm run dev
 ```
-
-Open http://localhost:3000 in your browser. You should see the login page.
-
-Test the auth flow:
-1. Click "Sign Up" and create a test account
-2. Verify the dashboard loads after login
-3. Check that protected routes redirect to login when not authenticated
+Open **[http://localhost:3000](http://localhost:3000)** inside your browser. The responsive landing page boilerplate and auth portal should load seamlessly.
 
 ---
 
-## Step 6: Set up Stripe (for payments)
+## 🛡️ Step 5: Secure and Deploy Live
 
-1. In your Stripe Dashboard, create a product and a price (monthly subscription)
-2. Copy the Price ID (starts with `price_`)
-3. Add it to your `.env` as `STRIPE_PRICE_ID=price_...`
-4. To test webhooks locally: `stripe listen --forward-to localhost:3000/webhook`
-
----
-
-## Step 7: Deploy
-
-Follow the deployment checklist in `deployment-checklist.md`. The short version:
-
-```bash
-npm run build
-firebase deploy
-```
-
-Your app will be live at `your-project.web.app`.
+When you are ready to publish your application live:
+1. **Firestore Rules**: Copy the rules from `firestore.rules` (inside the Firebase guide folder) and deploy them to protect your user collections from public read/write exposure.
+2. **Build Compilation**: Run the compile script:
+   ```bash
+   npm run build
+   ```
+3. **Firebase Hosting Deploy**: Trigger the live push command:
+   ```bash
+   firebase deploy
+   ```
+   Your application will be live at `your-project-id.web.app`.
+4. **Link Custom Domain**: Follow the Firebase Hosting dashboard prompts to add your custom domain and let the SSL certificate provision automatically.
 
 ---
 
-## Getting help
+## 🔒 Strict Security Warning
 
-Email: **a.gharami.325@westcliff.edu**  
-Subject: "Firebase Kit question — [brief description]"
-
-Include: your Node.js version, Firebase CLI version, the exact error message.
-
-Response within 48 hours on business days.
-
----
-
-## Getting updates
-
-Gumroad will notify you by email when a new version is uploaded. All updates are free.
-
----
-
-## What's next?
-
-After launching your SaaS:
-- **Add your AI model:** Connect your fraud detector, recommendation engine, or automation workflow to the dashboard placeholders
-- **Get the bundle:** Lead.AI Business Automation & XAI Builder Bundle — $79
+> [!WARNING]
+> Never commit your live secret keys (`sk_live_...` or model API keys) inside your client-side front-end code. If you make API calls to OpenAI, Claude, or Gemini directly from client-side JavaScript, buyers can steal your keys and consume your billing balance. Always route model completions securely through your serverless backend proxy configurations as detailed in [ai-tool-template-guide.md](file:///Users/arun/Desktop/Lead-ai-gumroad-products/products/firebase-saas-starter-kit/ai-tool-template-guide.md).

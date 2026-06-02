@@ -1,0 +1,414 @@
+<!-- Pricing Section Card Template -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-container">
+    <div class="pricing-header">
+      <span class="pricing-tag">Pricing Plans</span>
+      <h2>Simple, Transparent Pricing</h2>
+      <p>Start for free and upgrade as your AI usage scales. Cancel anytime with a single click.</p>
+      
+      <!-- Billing Toggle Switch (Monthly / Yearly) -->
+      <div class="billing-toggle-container">
+        <span class="toggle-label active" id="billing-monthly">Monthly</span>
+        <button class="billing-toggle-btn" id="billingToggle" aria-label="Toggle billing cycle">
+          <span class="toggle-slider"></span>
+        </button>
+        <span class="toggle-label" id="billing-yearly">Yearly <span class="discount-badge">Save 20%</span></span>
+      </div>
+    </div>
+
+    <!-- Pricing Grid -->
+    <div class="pricing-grid">
+      
+      <!-- Free Tier -->
+      <div class="pricing-card" id="pricing-free">
+        <div class="card-header">
+          <h3>Hobby</h3>
+          <p class="card-desc">Perfect for testing ideas and building portfolios.</p>
+          <div class="card-price">
+            <span class="currency">$</span>
+            <span class="amount">0</span>
+            <span class="period">/month</span>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>✓ 100 free AI queries per month</li>
+          <li>✓ Basic dashboard layout access</li>
+          <li>✓ Standard API response speeds</li>
+          <li class="muted">✕ Priority support</li>
+          <li class="muted">✕ Custom domain setup</li>
+        </ul>
+        <div class="card-action">
+          <a href="login.html?signup=true" class="btn btn-secondary pricing-btn">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Flagship / Launch Premium Tier -->
+      <div class="pricing-card highlighted" id="pricing-pro">
+        <div class="popular-tag">Most Popular</div>
+        <div class="card-header">
+          <h3>Pro Builder</h3>
+          <p class="card-desc">For serious builders shipping paid AI applications.</p>
+          <div class="card-price">
+            <span class="currency">$</span>
+            <span class="amount" id="pro-amount">49</span>
+            <span class="period" id="pro-period">/month</span>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>✓ Unlimited AI generation queries</li>
+          <li>✓ 5x faster model response times</li>
+          <li>✓ Advanced admin metrics console</li>
+          <li>✓ Premium custom domain link</li>
+          <li>✓ 24/7 Priority support channel</li>
+        </ul>
+        <div class="card-action">
+          <!-- In production: routes to Stripe Checkout Session / Gumroad overlay -->
+          <button class="btn btn-primary pricing-btn" id="checkoutBtnPro" onclick="initiateCheckout('pro_tier_price_id')">Upgrade to Pro</button>
+        </div>
+      </div>
+
+      <!-- regular / Advanced Pro Tier -->
+      <div class="pricing-card" id="pricing-enterprise">
+        <div class="card-header">
+          <h3>Scale</h3>
+          <p class="card-desc">For startups and agencies scaling AI automation.</p>
+          <div class="card-price">
+            <span class="currency">$</span>
+            <span class="amount" id="scale-amount">79</span>
+            <span class="period" id="scale-period">/month</span>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>✓ Dedicated private API endpoint nodes</li>
+          <li>✓ Standard team access & logging seats</li>
+          <li>✓ Customized fine-tuned models support</li>
+          <li>✓ Corporate SLA & secure SSO integration</li>
+          <li>✓ Dedicated account success manager</li>
+        </ul>
+        <div class="card-action">
+          <button class="btn btn-secondary pricing-btn" id="checkoutBtnScale" onclick="initiateCheckout('scale_tier_price_id')">Contact Sales</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CSS Styles for Copy/Pasting -->
+<style>
+  .pricing-section {
+    padding: 100px 0;
+    color: #e8e8f0;
+    background: #0a0a0f;
+  }
+
+  .pricing-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .pricing-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: rgba(79, 172, 254, 0.1);
+    border: 1px solid rgba(79, 172, 254, 0.2);
+    color: #4facfe;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+  }
+
+  .pricing-header h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+  }
+
+  .pricing-header p {
+    color: #8888a0;
+    font-size: 1.05rem;
+    max-width: 540px;
+    margin: 0 auto 32px;
+  }
+
+  /* ── Toggle Switch ── */
+  .billing-toggle-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 6px 16px;
+    border-radius: 9999px;
+  }
+
+  .toggle-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8888a0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .toggle-label.active {
+    color: #e8e8f0;
+  }
+
+  .discount-badge {
+    background: linear-gradient(135deg, #ff6b9d 0%, #c850c0 100%);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    margin-left: 4px;
+    font-weight: 700;
+  }
+
+  .billing-toggle-btn {
+    width: 44px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: background 0.3s ease;
+  }
+
+  .billing-toggle-btn.yearly {
+    background: #6C5CE7;
+  }
+
+  .toggle-slider {
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .billing-toggle-btn.yearly .toggle-slider {
+    transform: translateX(20px);
+  }
+
+  /* ── Pricing Grid ── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  .pricing-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 40px 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* Highlighted Pro Card styling */
+  .pricing-card.highlighted {
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 4px 30px rgba(255, 107, 157, 0.05);
+  }
+
+  .pricing-card.highlighted::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(135deg, #ff6b9d, #6C5CE7);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .popular-tag {
+    position: absolute;
+    top: 16px;
+    right: 32px;
+    background: linear-gradient(135deg, #ff6b9d 0%, #c850c0 100%);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .card-desc {
+    color: #8888a0;
+    font-size: 0.88rem;
+    margin-bottom: 28px;
+    line-height: 1.4;
+  }
+
+  .card-price {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 32px;
+  }
+
+  .card-price .currency {
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  .card-price .amount {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .card-price .period {
+    color: #8888a0;
+    font-size: 0.9rem;
+    margin-left: 4px;
+  }
+
+  /* Features List */
+  .card-features {
+    list-style: none;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 0.92rem;
+  }
+
+  .card-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e8e8f0;
+  }
+
+  .card-features li.muted {
+    color: #555570;
+  }
+
+  /* Actions buttons */
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #ff6b9d 0%, #c850c0 100%);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e8e8f0;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 992px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<!-- Copy/Paste Javascript for Billing Toggle Logic -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('billingToggle');
+    const labelMonthly = document.getElementById('billing-monthly');
+    const labelYearly = document.getElementById('billing-yearly');
+    const proAmount = document.getElementById('pro-amount');
+    const proPeriod = document.getElementById('pro-period');
+    const scaleAmount = document.getElementById('scale-amount');
+    const scalePeriod = document.getElementById('scale-period');
+
+    // Define subscription prices
+    const prices = {
+      monthly: { pro: 49, scale: 79, period: '/month' },
+      yearly: { pro: 39, scale: 63, period: '/month' } // Represents 20% discount billed annually
+    };
+
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const isYearly = toggle.classList.toggle('yearly');
+        
+        // Toggle active labels
+        labelMonthly.classList.toggle('active', !isYearly);
+        labelYearly.classList.toggle('active', isYearly);
+
+        // Update amounts
+        const cycle = isYearly ? 'yearly' : 'monthly';
+        proAmount.textContent = prices[cycle].pro;
+        proPeriod.textContent = prices[cycle].period;
+        scaleAmount.textContent = prices[cycle].scale;
+        scalePeriod.textContent = prices[cycle].period;
+      });
+    }
+  });
+
+  // Example placeholder for Stripe Checkout session redirection
+  function initiateCheckout(priceId) {
+    console.log('[Stripe] Initiating checkout for price ID:', priceId);
+    // In production: POST to /create-checkout-session and redirect to window.location.href = session.url
+  }
+</script>

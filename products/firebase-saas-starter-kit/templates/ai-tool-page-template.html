@@ -1,0 +1,354 @@
+<!-- AI Generation Tool Component Template -->
+<div class="ai-tool-view">
+  
+  <div class="view-header">
+    <span class="tool-badge">Explainable AI Interface</span>
+    <h1>AI Generation Studio</h1>
+    <p class="view-subtitle">Generate optimized small-business prompts, predictive analytics reports, and content summaries.</p>
+  </div>
+
+  <div class="studio-grid">
+    
+    <!-- Input Parameters Section -->
+    <div class="admin-card" style="flex:1;">
+      <h3 style="margin-bottom:16px;">Model Configuration</h3>
+      
+      <form id="aiPromptForm" onsubmit="handleAiGeneration(event)">
+        
+        <!-- Parameter 1: Select Model -->
+        <div class="form-group">
+          <label class="form-label" for="modelSelector">Choose AI Model</label>
+          <select class="form-select" id="modelSelector">
+            <option value="gemini-1.5-pro">Gemini 1.5 Pro (Analytical)</option>
+            <option value="gemini-1.5-flash">Gemini 1.5 Flash (Ultra-fast)</option>
+            <option value="claude-3-opus">Claude 3.5 Sonnet (Premium Copywriter)</option>
+          </select>
+        </div>
+
+        <!-- Parameter 2: Temperature Slider -->
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;">
+            <label class="form-label" for="temperatureSlider">Creativity / Temperature</label>
+            <span class="slider-value" id="tempDisplay">0.7</span>
+          </div>
+          <input type="range" class="form-range" id="temperatureSlider" min="0" max="1" step="0.1" value="0.7">
+        </div>
+
+        <!-- Parameter 3: Prompt Textarea -->
+        <div class="form-group">
+          <label class="form-label" for="promptInput">Enter System Prompt Instructions</label>
+          <textarea class="form-textarea" id="promptInput" rows="5" placeholder="Describe the AI task, context parameters, and desired output layout format..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="generateBtn">
+          <span class="btn-text">Generate AI Response</span>
+          <span class="spinner" id="btnSpinner" style="display:none;"></span>
+        </button>
+
+      </form>
+    </div>
+
+    <!-- Output Grid Layout -->
+    <div class="admin-card" style="flex:1.2; display:flex; flex-direction:column;">
+      <h3 style="margin-bottom:16px;">AI Engine Output</h3>
+      
+      <div class="output-wrapper" id="aiOutputWrapper">
+        
+        <!-- Blank State -->
+        <div class="empty-output-state" id="emptyOutputState">
+          <span class="empty-icon">✨</span>
+          <h4>Ready for Generation</h4>
+          <p>Configure model parameters and hit "Generate AI Response" to view real-time model completions and SHAP token explanation matrices.</p>
+        </div>
+
+        <!-- Loading State (hidden initially) -->
+        <div class="loading-state" id="loadingState" style="display:none;">
+          <div class="loading-ring"></div>
+          <p>Processing prompt through neural net node...</p>
+        </div>
+
+        <!-- Result Content (hidden initially) -->
+        <div class="result-content" id="resultContent" style="display:none;">
+          <div class="result-meta">
+            <span class="badge badge-model" id="resultModelBadge">Gemini 1.5 Pro</span>
+            <span class="badge badge-tokens" id="resultTokenBadge">480 tokens</span>
+          </div>
+          <div class="result-text" id="resultTextBody">
+            <!-- Dynamic completion response HTML will be injected here -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- CSS Styles for Generation Component -->
+<style>
+  .ai-tool-view {
+    color: #e8e8f0;
+  }
+
+  .tool-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: rgba(79, 172, 254, 0.1);
+    border: 1px solid rgba(79, 172, 254, 0.2);
+    color: #4facfe;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .studio-grid {
+    display: flex;
+    gap: 32px;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #8888a0;
+    margin-bottom: 8px;
+  }
+
+  .form-select, .form-textarea, .form-range {
+    width: 100%;
+    outline: none;
+  }
+
+  .form-select {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: #e8e8f0;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .form-textarea {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: #e8e8f0;
+    padding: 12px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    line-height: 1.5;
+    resize: vertical;
+  }
+
+  .form-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #4facfe;
+    border: 2px solid #fff;
+  }
+
+  .slider-value {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ff6b9d;
+  }
+
+  /* Output Wrapper */
+  .output-wrapper {
+    background: #07070a;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    flex: 1;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .empty-output-state {
+    text-align: center;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .empty-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 16px;
+    animation: bounce 2s infinite;
+  }
+
+  .empty-output-state h4 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .empty-output-state p {
+    color: #8888a0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  /* Loading State */
+  .loading-state {
+    text-align: center;
+  }
+
+  .loading-ring {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    border-top-color: #ff6b9d;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 16px;
+  }
+
+  .loading-state p {
+    color: #8888a0;
+    font-size: 0.88rem;
+  }
+
+  /* Result Area */
+  .result-meta {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .badge-model {
+    background: rgba(79, 172, 254, 0.15);
+    color: #00f2fe;
+  }
+
+  .badge-tokens {
+    background: rgba(255, 255, 255, 0.06);
+    color: #8888a0;
+  }
+
+  .result-text {
+    line-height: 1.7;
+    font-size: 0.95rem;
+    color: #e8e8f0;
+  }
+
+  /* Button Spinner */
+  .spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s linear infinite;
+    margin-left: 8px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @media (max-width: 992px) {
+    .studio-grid {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<!-- Copy/Paste Javascript for AI Call Lifecycle -->
+<script>
+  // Temperature slider display logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.getElementById('temperatureSlider');
+    const display = document.getElementById('tempDisplay');
+    if (slider && display) {
+      slider.addEventListener('input', (e) => {
+        display.textContent = e.target.value;
+      });
+    }
+  });
+
+  // Generation Form Handler
+  async function handleAiGeneration(event) {
+    event.preventDefault();
+    
+    const generateBtn = document.getElementById('generateBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const emptyState = document.getElementById('emptyOutputState');
+    const loadingState = document.getElementById('loadingState');
+    const resultContent = document.getElementById('resultContent');
+    const resultTextBody = document.getElementById('resultTextBody');
+    const resultModelBadge = document.getElementById('resultModelBadge');
+    
+    const model = document.getElementById('modelSelector').value;
+    const prompt = document.getElementById('promptInput').value;
+    const temp = document.getElementById('temperatureSlider').value;
+
+    // Show loading UI
+    generateBtn.disabled = true;
+    btnSpinner.style.display = 'inline-block';
+    emptyState.style.display = 'none';
+    resultContent.style.display = 'none';
+    loadingState.style.display = 'block';
+
+    try {
+      // Simulate API query delay (or call actual cloud functions node route here)
+      await new Promise(resolve => setTimeout(resolve, 1800));
+
+      // Mock dynamic completion return data
+      const mockResult = `
+        <h4 style="margin-bottom:8px;color:#ff6b9d;">Optimized Prompts Strategy Generated</h4>
+        <p style="margin-bottom:12px;">Based on your inputs, here is a optimized multi-stage system prompt:</p>
+        <code style="display:block;background:rgba(255,255,255,0.04);padding:12px;border-radius:6px;font-family:monospace;font-size:0.85rem;color:#ffb347;margin-bottom:16px;">
+          You are a business copywriter. Act as the primary strategy consultant for [Business] aiming to acquire [Segment]. Tone: analytical, direct...
+        </code>
+        <p>This prompt reduces token consumption by approximately 18% compared to naive formats while keeping response alignment high.</p>
+      `;
+
+      // Set output UI
+      resultModelBadge.textContent = model;
+      resultTextBody.innerHTML = mockResult;
+      
+      loadingState.style.display = 'none';
+      resultContent.style.display = 'block';
+    } catch (err) {
+      console.error('[AI Tool] Neural generation node error:', err);
+      // Fallback display
+      emptyState.style.display = 'block';
+      loadingState.style.display = 'none';
+    } finally {
+      generateBtn.disabled = false;
+      btnSpinner.style.display = 'none';
+    }
+  }
+</script>

@@ -92,33 +92,40 @@ products:
         - upgrade: "Add Docker deployment in v1.1 to justify higher price"
 
   - id: firebase-saas-starter-kit
-    display_name: "Firebase SaaS Starter Kit for AI Products: Auth, Dashboard, Payments & Deployment"
-    short_name: "Firebase SaaS Kit"
+    display_name: "Lead.AI Indie AI SaaS Starter Kit — Auth, Dashboard, Stripe, Gumroad & Launch Pages"
+    short_name: "Indie AI SaaS Kit"
     gumroad_url: https://arunkg7.gumroad.com/l/efqpmz
     price_usd: 49
+    launch_price_usd: 49
+    regular_price_usd: 79
+    future_pro_price_usd: 149
     status: published
     version: "1.0.0"
     folder: products/firebase-saas-starter-kit
-    role: builder_tool
+    role: flagship_builder_tool
     description: >
-      A complete Firebase SaaS starter kit designed for AI product builders. Includes authentication,
-      dashboard layout, Stripe payment integration template, and a deployment checklist. Buyers can
-      use this to launch their own AI SaaS product without starting from scratch.
+      A practical, high-converting SaaS starter kit specifically tailored for AI builders, founders, and indie hackers.
+      Includes robust Firebase email/OAuth authentication, modern responsive landing pages, Stripe and Gumroad payment checkouts,
+      creator & admin dashboards, interactive AI tool wrappers, and legal & launch templates. Designed to save developers 20+ hours of setup.
     primary_audience:
-      - Startup founders building AI SaaS products
-      - Developers who want to ship faster
-      - Freelancers building client SaaS applications
+      - AI startup founders building paid tools
+      - Indie hackers launching micro-SaaS products
+      - Freelancers shipping custom client dashboards
+      - Students compiling portfolio-ready AI platforms
     upsell_to:
       - lead-ai-bundle
     pricing_strategy:
-      model: fixed_price
-      current: 49
+      model: tiered_pricing
+      launch: 49
+      regular: 79
+      pro_tier: 149
       rationale: >
-        Mid-tier price for a reusable technical asset. Buyers save 20+ hours of setup work.
-        Clear ROI makes this easy to justify for startup founders and freelancers.
+        Saves builders 20+ hours of design, auth, and checkout boilerplate setup. Clear immediate ROI
+        by turning a local AI script/model into a paid, monetized product in under an afternoon.
       future_options:
-        - add_tier: "Add $79 tier with 30-min setup call"
-        - upgrade: "Add Next.js version in v1.1"
+        - v1.1_upgrade: "Add detailed dynamic page-level animations and additional AI API schemas"
+        - v1.2_upgrade: "Add complete Next.js / Supabase conversion templates"
+        - v2.0_upgrade: "Add full functional SaaS codebase template with functional endpoints"
 
   - id: ai-automation-prompt-vault
     display_name: "50 AI Automation Prompts for Small Businesses, Chatbots, Leads & SaaS Builders"

@@ -1,0 +1,333 @@
+<!-- Admin Dashboard Layout Template -->
+<div class="admin-dashboard">
+  
+  <div class="view-header">
+    <span class="admin-badge">Admin Controls</span>
+    <h1>Platform Management Console</h1>
+    <p class="view-subtitle">Monitor registered users, manage active subscriptions, and view system runtime logs.</p>
+  </div>
+
+  <!-- Admin KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:rgba(79, 172, 254, 0.15);color:#4facfe;">👥</div>
+      <div class="kpi-details">
+        <span class="kpi-label">Total Registered Users</span>
+        <span class="kpi-value">1,248</span>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:rgba(200, 80, 192, 0.15);color:#c850c0;">💳</div>
+      <div class="kpi-details">
+        <span class="kpi-label">Active Subscriptions</span>
+        <span class="kpi-value">342</span>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon" style="background:rgba(0, 184, 148, 0.15);color:#00b894;">💵</div>
+      <div class="kpi-details">
+        <span class="kpi-label">Monthly Recurring Revenue</span>
+        <span class="kpi-value">$16,758</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Accounts Table -->
+  <div class="admin-card">
+    <div class="card-header">
+      <h3>Active User Accounts</h3>
+      <input type="text" class="table-search" placeholder="Search accounts by name or email...">
+    </div>
+    
+    <div class="table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Registered Date</th>
+            <th>SaaS Plan</th>
+            <th>Subscription Status</th>
+            <th>Stripe Customer ID</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="user-cell">
+                <div class="user-cell-avatar">E</div>
+                <div class="user-cell-info">
+                  <span class="name">Emma Smith</span>
+                  <span class="email">emma.smith@gmail.com</span>
+                </div>
+              </div>
+            </td>
+            <td>June 1, 2026</td>
+            <td>Pro Builder</td>
+            <td><span class="badge badge-active">Active</span></td>
+            <td><code>cus_S1d8H2nLp82m</code></td>
+            <td>
+              <button class="btn btn-sm btn-action" onclick="manageUserSubscription('cus_S1d8H2nLp82m')">Manage</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="user-cell">
+                <div class="user-cell-avatar">L</div>
+                <div class="user-cell-info">
+                  <span class="name">Liam Williams</span>
+                  <span class="email">liam.williams@outlook.com</span>
+                </div>
+              </div>
+            </td>
+            <td>May 28, 2026</td>
+            <td>Scale Tier</td>
+            <td><span class="badge badge-active">Active</span></td>
+            <td><code>cus_R8u9Pq2kJ11o</code></td>
+            <td>
+              <button class="btn btn-sm btn-action" onclick="manageUserSubscription('cus_R8u9Pq2kJ11o')">Manage</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="user-cell">
+                <div class="user-cell-avatar">S</div>
+                <div class="user-cell-info">
+                  <span class="name">Sophia Martinez</span>
+                  <span class="email">sophia.m@hey.com</span>
+                </div>
+              </div>
+            </td>
+            <td>May 15, 2026</td>
+            <td>Pro Builder</td>
+            <td><span class="badge badge-cancelled">Cancelled</span></td>
+            <td><code>cus_K1a8B8d9oP22</code></td>
+            <td>
+              <button class="btn btn-sm btn-action" onclick="manageUserSubscription('cus_K1a8B8d9oP22')">Manage</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Platform System Logs -->
+  <div class="admin-card" style="margin-top:32px;">
+    <div class="card-header">
+      <h3>System Security & Integration Logs</h3>
+      <span class="status-indicator live">Live Logging</span>
+    </div>
+    <div class="logs-console" id="adminLogsConsole">
+      <div class="log-line"><span class="log-time">[18:24:02]</span> <span class="log-type info">INFO</span> Stripe Webhook: Successfully processed subscription creation for customer cus_S1d8H2nLp82m</div>
+      <div class="log-line"><span class="log-time">[18:15:30]</span> <span class="log-type info">INFO</span> Firebase Auth: User sophia.m@hey.com logged in successfully via Google OAuth</div>
+      <div class="log-line"><span class="log-time">[17:58:11]</span> <span class="log-type warn">WARN</span> OpenAI API: Request latency exceeded 1,200ms node node_east_2</div>
+      <div class="log-line"><span class="log-time">[17:42:09]</span> <span class="log-type error">ERROR</span> Stripe Webhook: Webhook signature verification failed on request signature t=1780362391</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CSS Styles for Admin Console -->
+<style>
+  .admin-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: rgba(200, 80, 192, 0.1);
+    border: 1px solid rgba(200, 80, 192, 0.2);
+    color: #c850c0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .admin-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .admin-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .table-search {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: #e8e8f0;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    width: 100%;
+    max-width: 320px;
+    outline: none;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  .admin-table th {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 12px 16px;
+    color: #8888a0;
+    font-weight: 500;
+  }
+
+  .admin-table td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .user-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .user-cell-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+  .user-cell-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-cell-info .name {
+    font-weight: 600;
+  }
+
+  .user-cell-info .email {
+    font-size: 0.8rem;
+    color: #8888a0;
+  }
+
+  .admin-table code {
+    background: rgba(255, 255, 255, 0.04);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #ff6b9d;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .badge-active {
+    background: rgba(0, 184, 148, 0.15);
+    color: #00d4aa;
+  }
+
+  .badge-cancelled {
+    background: rgba(214, 48, 49, 0.15);
+    color: #ff6b6b;
+  }
+
+  .btn-action {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e8e8f0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-action:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Live indicators */
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #8888a0;
+  }
+
+  .status-indicator::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00b894;
+    animation: pulse 1.8s infinite;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(0, 184, 148, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0); }
+  }
+
+  /* Console logs */
+  .logs-console {
+    background: #07070a;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    padding: 16px;
+    font-family: monospace;
+    font-size: 0.82rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .log-line {
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+
+  .log-time {
+    color: #555570;
+  }
+
+  .log-type {
+    font-weight: 700;
+  }
+
+  .log-type.info { color: #4facfe; }
+  .log-type.warn { color: #ffb347; }
+  .log-type.error { color: #ff6b6b; }
+</style>
+
+<script>
+  function manageUserSubscription(customerId) {
+    console.log('[Admin Portal] Accessing Stripe subscription management console for customer:', customerId);
+    // In production: open customer Stripe Portal session URL
+  }
+</script>

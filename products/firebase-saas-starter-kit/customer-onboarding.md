@@ -1,110 +1,87 @@
-# Customer Onboarding — Firebase SaaS Starter Kit
+# Customer Onboarding — Lead.AI Indie AI SaaS Starter Kit
+
+Welcome to the **Lead.AI Indie AI SaaS Starter Kit** builder network. You now possess everything required to configure, style, monetize, and launch a professional, premium AI SaaS application in less than an afternoon.
+
+The average developer spends 2–3 weeks setting up databases, secure OAuth checkouts, responsive client portals, administrative logs panels, and pre-launch policy checklists from scratch. You are going to bypass all of that and do it in under 4 hours.
 
 ---
 
-## Welcome
+## 📅 Onboarding Milestones Schedule
 
-You now have everything you need to launch a Firebase SaaS product — authentication, a dashboard, Stripe payments, and a deployment guide.
+### The First 10 Minutes
+**Goal: Get the responsive app shell running locally.**
+1. Unzip the downloaded codebase.
+2. Open your terminal, navigate to the folder, and run:
+   ```bash
+   npm install
+   ```
+3. Copy `.env.example` to `.env`.
+4. Retrieve your Firebase config keys from the Firebase Console (Settings -> Web App) and insert them into your `.env`.
+5. Run the local development server:
+   ```bash
+   npm run dev
+   ```
+6. Open **http://localhost:3000** in your browser.
 
-The average developer spends 2–3 weeks building this infrastructure from scratch. You are going to do it in an afternoon. Let's get you there.
-
----
-
-## Your first 10 minutes
-
-**Goal: Get the app running locally.**
-
-1. Unzip the downloaded file
-2. Open your terminal, navigate to the folder
-3. Run `npm install`
-4. Copy `.env.example` to `.env`
-5. Add your Firebase API keys to `.env` (find them in Firebase Console → Project Settings)
-6. Run `npm run dev`
-7. Open http://localhost:3000
-
-**Your 10-minute milestone:** You see the login page in your browser.
-
-If you see an error instead, copy the error message and email a.gharami.325@westcliff.edu.
+*10-Minute Milestone:* The premium dark glassmorphism dashboard layout renders and functions in your local browser window.
 
 ---
 
-## Your first 1 hour
+### The First 1 Hour
+**Goal: Validate sign-ins and Stripe/Gumroad payment flow checkouts.**
+1. Register a test user account via the local sign-up portal.
+2. Confirm the user is logged in, protected routes block unauthenticated access, and custom KPI metrics display correctly.
+3. Configure your Google OAuth credentials on the Firebase Authentication Console.
+4. Input your Stripe test keys (`pk_test_...`) and product price ID into `.env`.
+5. Test a subscription checkout flow utilizing the Stripe test card number `4242 4242 4242 4242`.
 
-**Goal: Test all auth flows and connect Stripe.**
-
-1. Create a test account via the sign-up page
-2. Verify the dashboard loads after sign-in
-3. Test Google OAuth sign-in
-4. Test the password reset flow
-5. Add your Stripe test keys to `.env`
-6. Create a test product and price in your Stripe dashboard
-7. Add the price ID to `.env`
-8. Test the checkout flow with Stripe test card `4242 4242 4242 4242`
-
-**Your 1-hour milestone:** A user can sign up, see the dashboard, and click through the checkout flow with a Stripe test payment.
+*1-Hour Milestone:* A test user can sign up, access the dashboard, and checkout a subscription plan safely.
 
 ---
 
-## Your first day
+### The First 1 Day
+**Goal: Deploy the static SaaS app live and map your custom domain.**
+1. Review the phase-by-phase checkpoints in [launch-checklist.md](file:///Users/arun/Desktop/Lead-ai-gumroad-products/products/firebase-saas-starter-kit/launch-checklist.md).
+2. Configure your live database rules securely as detailed in [firebase-setup-guide.md](file:///Users/arun/Desktop/Lead-ai-gumroad-products/products/firebase-saas-starter-kit/firebase-setup-guide.md).
+3. Build and deploy the project live:
+   ```bash
+   npm run build
+   # Deploy hosting assets
+   firebase deploy
+   ```
+4. Map your custom domain in the Firebase Hosting panel and let the SSL provision.
 
-**Goal: Deploy to Firebase Hosting and show it to someone.**
-
-1. Open `deployment-checklist.md` and work through it
-2. Update Firestore security rules (copy from the included template)
-3. Run `npm run build`
-4. Run `firebase deploy`
-5. Share the `.web.app` URL with one person
-
-**Your day-one milestone:** Your SaaS app is live on the internet at `your-project.web.app`.
-
-That is a real deployed product. Now you customize it and add your own features.
-
----
-
-## How to ask for help
-
-Email: **a.gharami.325@westcliff.edu**  
-Subject: "Firebase Kit question — [topic]"
-
-Include:
-- Your Node.js version (`node --version`)
-- Firebase CLI version (`firebase --version`)
-- The exact error message (copy and paste)
-- Which step you are on
-
-Response within 48 hours on business days.
+*1-Day Milestone:* Your new, premium AI SaaS application is live, unblocked, and monetized on a custom domain.
 
 ---
 
-## How to get product updates
+## ❓ Support & Assistance
 
-When a new version is released, Gumroad will notify you by email. All updates (including the planned React version) are free for existing buyers.
+If you run into any setup errors, please contact:
+- **Email**: `a.gharami.325@westcliff.edu`
+- **Subject**: "SaaS Kit Support — [Specific Issue]"
 
-Watch the GitHub repository for release announcements:
-https://github.com/Arungharami/Lead-ai-gumroad-products
+Please include:
+- Your local Node.js and Firebase CLI version strings.
+- Copy/paste printout of the terminal error or console exception.
+- The step in the checklist you were executing.
 
----
-
-## What to do after getting the kit running
-
-**Step 1:** Replace the placeholder sections in the dashboard with your actual product features.
-
-**Step 2:** Customize the branding (colors, logo, product name) in the CSS and HTML.
-
-**Step 3:** Add your AI model or tool. The kit provides the infrastructure — you add the value.
-
-**Natural next steps:**
-
-**Add AI to your SaaS:**  
-The Fraud Detection XAI Project Kit gives you a complete ML model to add to your dashboard.  
-→ [Fraud Detection XAI Project Kit ($99)](https://arunkg7.gumroad.com/l/ihsob)
-
-**Automate your marketing and customer workflows:**  
-→ [50 AI Automation Prompts ($19)](https://arunkg7.gumroad.com/l/tqnpq)
-
-**Get everything together:**  
-→ Lead.AI Business Automation & XAI Builder Bundle — $79
+We resolve technical queries within 48 business hours.
 
 ---
 
-*Thank you for building with Lead.AI. — Arun Kumar Gharami*
+## 📢 Getting Version Upgrades
+
+When we release new features or layouts (including planned React and Next.js upgrades), Gumroad will automatically send a notification and download links to your registered purchase email address. All version upgrades are 100% free forever.
+
+---
+
+## 🪜 Next Product Recommendations
+
+- **Secure Fraud Detection Capabilities**: Link your new SaaS dashboard directly to a production-ready machine learning framework:
+  → [Fraud Detection XAI Project Kit ($99)](https://arunkg7.gumroad.com/l/ihsob)
+- **Scale Customer Interactions**: Automate your client-onboarding workflows:
+  → [50 AI Automation Prompts ($19)](https://arunkg7.gumroad.com/l/tqnpq)
+- **Get the Entire Suite**: Purchase the unified flagship package:
+  → **Lead.AI Business Automation & XAI Builder Bundle ($79)**
+

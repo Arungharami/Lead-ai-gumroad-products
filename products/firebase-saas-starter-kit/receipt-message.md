@@ -1,25 +1,35 @@
-# Receipt Message — Firebase SaaS Starter Kit
+# Receipt Message — Lead.AI Indie AI SaaS Starter Kit
 
-**Paste this into Gumroad → Product → "Thank you / Receipt message" field.**
+Copy and paste the text below into your Gumroad listing's "Receipt Message" field.
 
 ---
 
-Hi — thank you for purchasing the Firebase SaaS Starter Kit.
+Hi — thank you for purchasing the Lead.AI Indie AI SaaS Starter Kit.
 
-Your ZIP file is attached. Download it and get started in the next 10 minutes:
+Your ZIP release file is attached. Let's get your local dashboard live in under 10 minutes:
 
-1. Unzip the file
-2. Run `npm install` in the project folder
-3. Create a Firebase project (if you haven't): https://console.firebase.google.com
-4. Copy `.env.example` to `.env` and add your Firebase config keys
-5. Run `npm run dev` — your local SaaS app is live
+1. Extract the downloaded ZIP folder.
+2. Open your terminal in the workspace directory.
+3. Install the packages:
+   ```bash
+   npm install
+   ```
+4. Copy the environment variables template:
+   ```bash
+   cp .env.example .env
+   ```
+5. Retrieve your credentials from the Firebase Console (Settings -> Web App) and add them to `.env`.
+6. Launch local server:
+   ```bash
+   npm run dev
+   ```
+7. Navigate to http://localhost:3000 to interact with your dashboard.
 
-The complete deployment guide is in `deployment-checklist.md` inside the ZIP. The buyer instructions cover the Stripe integration step by step.
+Detailed developer onboarding instructions are located inside `products/firebase-saas-starter-kit/START-HERE.md` and `README.md` in your codebase.
 
-If you hit a setup error, email me at a.gharami.325@westcliff.edu with "Firebase Kit setup" in the subject line and your error message. I'll help within 48 hours.
+If you encounter any integration or setup issues, email a.gharami.325@westcliff.edu with "SaaS Kit Setup" and your specific console logs. I will assist you within 48 business hours.
 
-This kit gives you the infrastructure. You bring the product. Go build something.
+The foundation is built. Go integrate your AI model and ship your SaaS.
 
-Arun Kumar Gharami  
-Lead.AI  
+Arun Kumar Gharami — Lead.AI
 https://github.com/Arungharami/Lead-ai-gumroad-products

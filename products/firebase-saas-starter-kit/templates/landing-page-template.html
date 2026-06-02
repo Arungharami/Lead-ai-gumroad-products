@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Launch your next AI application in record time. Auth, payments, and premium dashboard templates integrated.">
+  <title>Indie AI SaaS Landing Page Template</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ── Design Tokens & Base Reset ── */
+    :root {
+      --bg-deep: #0a0a0f;
+      --bg-base: #12121a;
+      --bg-surface: rgba(255, 255, 255, 0.03);
+      --bg-surface-hover: rgba(255, 255, 255, 0.06);
+      --primary: linear-gradient(135deg, #ff6b9d 0%, #c850c0 100%);
+      --secondary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --text-primary: #e8e8f0;
+      --text-secondary: #8888a0;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --glass-blur: 20px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--bg-deep);
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(ellipse 60% 40% at 10% 20%, rgba(200, 80, 192, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 90% 80%, rgba(79, 172, 254, 0.04) 0%, transparent 60%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── Utility Components ── */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.35);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(var(--glass-blur));
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-surface-hover);
+      transform: translateY(-2px);
+    }
+
+    .text-gradient {
+      background: var(--primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    /* ── Hero Section ── */
+    .hero {
+      padding: 100px 0 140px;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 107, 157, 0.1);
+      border: 1px solid rgba(255, 107, 157, 0.2);
+      color: #ff6b9d;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+
+    /* ── Features ── */
+    .features {
+      padding: 100px 0;
+      background: var(--bg-base);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      background: var(--bg-surface-hover);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(79, 172, 254, 0.1);
+      border: 1px solid rgba(79, 172, 254, 0.2);
+      color: #00f2fe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .header-content, .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header-content">
+      <div class="logo">
+        <span>Indie<strong class="text-gradient">AI</strong></span>
+      </div>
+      <nav class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <!-- Inject dynamic Auth links here -->
+        <a href="login.html" class="btn btn-secondary btn-sm" id="authBtn">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero" id="heroSection">
+      <div class="container">
+        <span class="hero-tag">Now in Public Beta</span>
+        <h1>Build and Monetize Your <span class="text-gradient">AI Concept</span> in Record Time</h1>
+        <p class="hero-subtitle">
+          A premium responsive boilerplate layout with built-in dark glassmorphism design tokens, clean structural components, and pre-configured SaaS conversion paths.
+        </p>
+        <div class="hero-actions">
+          <a href="login.html?signup=true" class="btn btn-primary" id="ctaPrimary">Get Started Free</a>
+          <a href="#features" class="btn btn-secondary" id="ctaSecondary">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Everything You Need to Ship</h2>
+          <p>Carefully structured, performance-optimized, and beautiful out-of-the-box components.</p>
+        </div>
+        
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🔑</div>
+            <h3>Secure Authentication</h3>
+            <p>Email & Password or one-click Google OAuth flows to keep your user accounts completely safe and organized.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Creator Dashboard</h3>
+            <p>A full responsive dashboard layout with clear metrics, active settings panels, and user-level status metrics.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">💳</div>
+            <h3>Stripe & Gumroad Ready</h3>
+            <p>Pre-styled card sections and call-to-actions built to route subscription checkouts and license key queries successfully.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="mainFooter">
+    <div class="container footer-content">
+      <div>
+        <p>&copy; 2026 IndieAI. Built with Lead.AI SaaS Starter Kit. All rights reserved.</p>
+      </div>
+      <div class="nav-links">
+        <a href="terms.html" class="nav-link">Terms</a>
+        <a href="privacy.html" class="nav-link">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
